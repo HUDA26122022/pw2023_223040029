@@ -13,8 +13,9 @@ $bundar = "Bundar" ;
 <body>
     <h2>
         <i>
-            <?php echo '"' . $topi . " ". "saya" . " " . $bundar . "," . " " . $bundar ." " . $topi . " " . "saya" . '"' ?>
+            <?php echo '"' . $topi . " ". "saya" . " " . $bundar . "," . " " . $bundar ." " . $topi . " " . "saya". '"' ?>
         </i>
     </h2>
 </body>
 </html>
+

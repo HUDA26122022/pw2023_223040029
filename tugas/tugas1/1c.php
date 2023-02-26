@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1c</title>
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+            line-height: 0;
+        }
     .box2 {
         display: flex;
     }
