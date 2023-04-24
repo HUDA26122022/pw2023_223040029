@@ -1,0 +1,23 @@
+*{
+    padding: 0;
+    margin:0;
+}
+.warna1 {
+    background-color:#61481C ;
+}
+
+.warna2 {
+    background-color: #A47E3B;
+}
+
+.warna3 {
+    background-color:#BF9742 ;
+}
+
+.warna4 {
+    background-color:#E6B325 ;
+}
+.login a {
+    text-decoration: none;
+    color:rgba(0, 0, 0, 0.4);
+ }

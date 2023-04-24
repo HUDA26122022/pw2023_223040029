@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.banner {
+    background: url(../img/background/1.png) no-repeat center center;
+    background-size:cover;
+    height: 80vh;
+    color: #fff;
+ }
+/* warna */
+
+.warna1 {
+    background-color:#61481C ;
+}
+
+.warna2 {
+    background-color: #A47E3B;
+}
+
+.warna3 {
+    background-color:#BF9742 ;
+}
+
+.warna4 {
+    background-color:#E6B325 ;
+}
+
+/* kategori */
+
+.produck {
+    height: 250px;
+    border-radius: 5px;
+    
+}
+
+.kategori-makanan1 {
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(../img/produck/serabi.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.kategori-makanan2 {
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(../img/produck/minuman.jpg);
+    background-size: cover;
+    background-position: center;
+    
+}
+.kategori-makanan3 {
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(../img/produck/combro.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.text-kategori a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+ .login a {
+    text-decoration: none;
+    color:rgb(0, 0, 0);
+ }
