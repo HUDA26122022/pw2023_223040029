@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 .banner {
@@ -26,7 +27,9 @@
 .warna4 {
     background-color:#E6B325 ;
 }
-
+.warna5 {
+    background-color: #000033;
+}
 /* kategori */
 
 .produck {
@@ -62,4 +65,7 @@
  .login a {
     text-decoration: none;
     color:rgb(0, 0, 0);
+    
  }
+
+ 

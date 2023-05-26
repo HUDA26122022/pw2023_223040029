@@ -1,7 +1,7 @@
    <!-- navbar -->
-   <nav class="navbar navbar-expand-lg navbar-light warna4 fixed-top position-fixed">
+   <nav class="navbar navbar-expand-lg navbar-light warna4 fixed-top position-fixed p-3">
   <div class="container">
-    <a class="navbar-brand" href="#"><img src="img/icons/shop.png" alt="" width="35" height="35"> Serasa </a>
+    <a class="navbar-brand" href="#"><img src="img/icons/logo1.png" alt="" width="80" height="45"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,15 +17,15 @@
           <a class="nav-link" href="minuman.php">minuman</a>
         </li>
       </ul>
-    <div class="ms-auto login">
+    <!-- <div class="ms-auto login">
         <a href="" class="">
             <img src="img/icons/keranjang.png" width="20" height="20" alt="">
         </a>
-        <a class="" href="../tubes/login/login.php"> 
+        <a class="" href="../tubes/adminpanel/login.php"> 
             <b>Login</b> 
              <img src="img/icons/login.png" width="20" height="20" alt="">
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
 </nav>

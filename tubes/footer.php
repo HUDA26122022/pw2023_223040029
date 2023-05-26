@@ -36,7 +36,7 @@
   </div>
   <div class="row text-center warna4 text-white">
       <div class="col-md-12 mt-3">
-        <p class="copyright">Copyright © Ahmad Mulia Huda 2022</p>
+        <p class="copyright">Copyright © Ahmad Mulia Huda 2023</p>
       </div>
     </div>
 </footer>

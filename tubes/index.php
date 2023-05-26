@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>SERABI RASA SAYANG</title>
+    <link rel="icon" href="img/icons/logo1.png">
 
     <!-- font -->
 
@@ -19,10 +20,48 @@
   <body id="page-top">
  <!-- navbar -->
 
- <?php require "navbar.php"; ?>
+   <!-- navbar -->
+   <nav class="navbar navbar-expand-lg navbar-light warna4 fixed-top position-fixed p-3">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="img/icons/logo1.png" alt="" width="80" height="45"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ">
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#telusuri" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Beranda
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#utama">utama</a></li>
+            <li><a class="dropdown-item" href="#kosong">Produck</a></li>
+            <li><a class="dropdown-item" href="#about">About</a></li>
+            <li><a class="dropdown-item" href="#menu">Menu</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="makanan.php">Makanan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="minuman.php">minuman</a>
+        </li>
+      </ul>
+    <div class="ms-auto login">
+        <a href="" class="">
+            <img src="img/icons/keranjang.png" width="20" height="20" alt="">
+        </a>
+        <a class="" href="../tubes/adminpanel/login.php"> 
+            <b>Login</b> 
+             <img src="img/icons/login.png" width="20" height="20" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <!-- banner -->
-<section class="container-fluid banner d-flex align-items-center">
+<section id="utama" class="container-fluid banner d-flex align-items-center" id="telusuri">
   <div class="container text-center">
     <h2>SERABI RASA SAYANG</h2>
     <h5>mau cari apa ?</h5>
@@ -38,8 +77,12 @@
 </section>
 
 <!-- kategori -->
-<div class="container-fluid py-5">
+
+<div id="produck" class="container-fluid py-5">
+
   <div class="container text-center">
+    <div class="kosong" id="kosong" style="opacity: 0;"><h1>kosong</h1></div>
+    <br><br><br>
     <h3>Produck</h3>
 
     <div class="row mt-5">
@@ -63,15 +106,14 @@
 </div>
 
 <!-- tentang -->
-<div class="container-fluid bg-warning pb-2 pt-2">
+<section id="about" class="container-fluid bg-warning pt-5 pb-5">
   <div class="container text-center">
     <h2>Tentang kami</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga corporis qui aliquid consequatur odit quam consectetur, quibusdam explicabo rerum animi ipsam ullam laborum tempora velit ut, illum placeat accusamus.</p>
   </div>
-</div>
-
+</section>
 <!-- list product -->
-<div class="container-fluid mt-5 py-5">
+<section id="menu" class="container-fluid mt-5 py-5">
   <div class="container">
     <h3 class="text-center">Menu</h3>
 
@@ -161,7 +203,9 @@
       </div>
     </div>
   </div>
-</div>
+</section>
+
+
 <?php require "footer.php"; ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

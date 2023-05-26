@@ -1,3 +1,23 @@
+<?php 
+
+require_once "core/init.php";
+require "../adminpanel/function/db.php";
+
+//untuk menyambungkan data kategori di database
+$queryKategori = mysqli_query($link, "SELECT * FROM kategori");
+$jumlahKategori = mysqli_num_rows($queryKategori);
+
+//untuk menyambungkan data produck di database
+$queryProduck = mysqli_query($link, "SELECT * FROM produck");
+$jumlahProduck = mysqli_num_rows($queryProduck);
+
+
+if ( !isset($_SESSION['user'])){  //! = negasi
+   header('localtion: login.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,18 +61,22 @@
 .no-decoration:hover{
     color: red;
 }
+
+.home{
+    padding-top: 100px;
+}
 </style>
 <body>
  <!-- navbar -->
  <?php require "navbaradmin.php"; ?>
  <!--  -->
-<div class="container  mt-5">
+<div class="container  mt-5 home">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page"><i class="fa-solid fa-house-chimney p-1"></i>Home</li>
+            <li class="breadcrumb-item active" aria-current="page"><i class="fa-solid fa-house-chimney "></i>  Home</li>
         </ol>
     </nav>
-
+     <br>
     <h3>Hallo Admin</h3>
 
   <div class="container mt-5">
@@ -65,7 +89,11 @@
                 </div>
                 <div class="col-6 text-white">
                     <h3 class="">kategoti</h3>
-                    <p class="">4 kategori</p>
+                    <p class=""><?php 
+                    
+                    echo $jumlahKategori;
+                    
+                    ?> kategori</p>
                     <a href="" class="text-white no-decoration ">lihat detail</a>
                 </div>
             </div>
@@ -80,7 +108,11 @@
                         </div>
                         <div class="col-6 text-white">
                             <h3 class="">Product</h3>
-                            <p class="">5 Product</p>
+                            <p class=""><?php 
+                            
+                            echo $jumlahProduck ;
+                            
+                            ?> produck</p>
                             <a href="" class="text-white no-decoration ">lihat detail</a>
                         </div>
                 </div>
