@@ -68,4 +68,40 @@
     
  }
 
- 
+
+.text-harga {
+    font-size: 23px;
+}
+
+.image-produk img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* produk */
+.baner-produk{
+    background: url(../img/background/1.png) no-repeat center center;
+    background-size:cover;
+    height: 46vh;
+    color: #fff;
+    background-position: 50%  100%;
+}
+
+
+.my-element {
+    margin-left: 20px;
+}
+
+.skill-image{
+border-radius:10px ;
+/* background-color: #2f00ff; */
+position: relative;
+overflow: hidden;
+border-radius: 10px;
+display: block;
+transition: 0.5s;
+margin:80px 30px ;
+
+}

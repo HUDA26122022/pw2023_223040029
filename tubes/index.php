@@ -1,3 +1,25 @@
+<?php
+
+require "koneksi.php";
+
+$queryProduk = mysqli_query($link, "SELECT id, nama, harga, foto, detail FROM produck LIMIT 6");
+
+// Misalnya, menggunakan session untuk menyimpan status login pengguna
+session_start();
+
+// Periksa apakah pengguna sudah login berdasarkan informasi session
+if (isset($_SESSION['user'])) {
+    // Pengguna sudah login
+    $user_logged_in = true;
+} else {
+    // Pengguna belum login
+    $user_logged_in = false;
+}
+
+$queryKategori = mysqli_query($link, "SELECT * FROM kategori");
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,48 +39,27 @@
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body id="page-top">
- <!-- navbar -->
+  <style>
+    .my-element {
+        margin-left: 20px;
+    }
 
-   <!-- navbar -->
-   <nav class="navbar navbar-expand-lg navbar-light warna4 fixed-top position-fixed p-3">
-  <div class="container">
-    <a class="navbar-brand" href="#"><img src="img/icons/logo1.png" alt="" width="80" height="45"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ">
-      <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#telusuri" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Beranda
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#utama">utama</a></li>
-            <li><a class="dropdown-item" href="#kosong">Produck</a></li>
-            <li><a class="dropdown-item" href="#about">About</a></li>
-            <li><a class="dropdown-item" href="#menu">Menu</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="makanan.php">Makanan</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="minuman.php">minuman</a>
-        </li>
-      </ul>
-    <div class="ms-auto login">
-        <a href="" class="">
-            <img src="img/icons/keranjang.png" width="20" height="20" alt="">
-        </a>
-        <a class="" href="../tubes/adminpanel/login.php"> 
-            <b>Login</b> 
-             <img src="img/icons/login.png" width="20" height="20" alt="">
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
+    .skill-image{
+    border-radius:10px ;
+    /* background-color: #2f00ff; */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    display: block;
+    transition: 0.5s;
+    margin:80px 30px ;
+    
+}
+
+
+
+</style>
+  <body id="page-top">
 
 <!-- banner -->
 <section id="utama" class="container-fluid banner d-flex align-items-center" id="telusuri">
@@ -66,7 +67,7 @@
     <h2>SERABI RASA SAYANG</h2>
     <h5>mau cari apa ?</h5>
     <div class="col-8 offset-2">
-      <form method="get" action="produck.php">
+      <form method="get" action="produk.php">
     <div class="input-group my-3">
     <input type="text" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
     <button type="submit" class="btn warna3 text-white"> Telusuri</button>
@@ -75,6 +76,9 @@
     </div>
 </div>
 </section>
+<!-- navbar -->
+<?php require "navbar.php"; ?>
+
 
 <!-- kategori -->
 
@@ -88,17 +92,17 @@
     <div class="row mt-5">
       <div class="col-md-4 mb-2">
           <div class="produck kategori-makanan1 d-flex justify-content-center align-items-center ">
-            <h4 class="text-white text-kategori"><a href="">Serabi</a></h4>
+            <h4 class="text-white text-kategori "><a href="produk.php?kategori=Surabi">Serabi</a></h4>
         </div>
       </div>
       <div class="col-md-4 mb-2">
       <div class="produck kategori-makanan2 d-flex justify-content-center align-items-center ">
-            <h4 class="text-white text-kategori"><a href="">Bajigur</a></h4>
+            <h4 class="text-white text-kategori "><a href="produk.php?kategori=Minuman">Bajigur</a></h4>
         </div>
       </div>
       <div class="col-md-4 mb-2">
       <div class="produck kategori-makanan3 d-flex justify-content-center align-items-center ">
-            <h4 class="text-white text-kategori"><a href="">Combro</a></h4>
+            <h4 class="text-white text-kategori "><a href="produk.php?kategori=Combro">Combro</a></h4>
         </div>
       </div>
     </div>
@@ -106,104 +110,45 @@
 </div>
 
 <!-- tentang -->
-<section id="about" class="container-fluid bg-warning pt-5 pb-5">
+
+<section >
+  <div id="about" class="container-fluid bg-warning mt-5 pt-5 pb-5">
   <div class="container text-center">
+  
     <h2>Tentang kami</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga corporis qui aliquid consequatur odit quam consectetur, quibusdam explicabo rerum animi ipsam ullam laborum tempora velit ut, illum placeat accusamus.</p>
   </div>
-</section>
-<!-- list product -->
-<section id="menu" class="container-fluid mt-5 py-5">
-  <div class="container">
-    <h3 class="text-center">Menu</h3>
-
-    <div class="row mt-5 text-center">
-      <div class="col-md-4 mt-3">
-       <div class="card h-100">
-        <img src="img/makanan/serabi kalibeluk.png" class="card-img-top" alt="...">
-          <div class="card-body">
-          <h5 class="card-title">Serabi Kalibeluk</h5>
-          <p class="card-text">1 porsi</p>
-        <p class="card-text">Rp. 13.000</p>
-        <a href="../tubes/page/s_kalibeluk.php" class="btn btn-primary">Lihat Detail</a>
-      </div>
-    </div>
-      </div>
-    
-      <div class="col-md-4 mt-3">
-       <div class="card  h-100">
-        <img src="img/makanan/serabi notosuman.png" class="card-img-top" alt="...">
-          <div class="card-body">
-          <h5 class="card-title">Serabi Notosuman</h5>
-          <p class="card-text">1 porsi</p>
-        <p class="card-text">Rp. 3.500</p>
-        <a href="../tubes/page/s_notosuman.php" class="btn btn-primary">Lihat Detail</a>
-      </div>
-    </div>
-      </div>
-
-    <div class="col-md-4 mt-3">
-       <div class="card  h-100">
-        <img src="img/makanan/serabi oncom.png" class="card-img-top" alt="...">
-          <div class="card-body">
-          <h5 class="card-title">Serabi Oncom</h5>
-          <p class="card-text">1 porsi</p>
-        <p class="card-text">Rp. 3.000</p>
-        <a href="../tubes/page/s_oncom.php" class="btn btn-primary">Lihat Detail</a>
-      </div>
-    </div>
-      </div>
-
-      <div class="col-md-4 mt-3">
-       <div class="card  h-100">
-        <img src="img/minuman/bajigur.png" class="card-img-top" alt="...">
-          <div class="card-body">
-          <h5 class="card-title">Bajigur</h5>
-          <p class="card-text">1 gelas</p>
-        <p class="card-text">Rp. 7.000</p>
-        <a href="../tubes/page/m_bajigur.php" class="btn btn-primary">Lihat Detail</a>
-      </div>
-    </div>
-      </div>
-
-      <div class="col-md-4 mt-3">
-       <div class="card  h-100">
-        <img src="img/minuman/es goyobod.png" class="card-img-top" alt="...">
-          <div class="card-body">
-          <h5 class="card-title">Es goyobod</h5>
-          <p class="card-text">1 gelas</p>
-        <p class="card-text">Rp. 5.000</p>
-        <a href="../tubes/page/m_EsGoyobod.php" class="btn btn-primary">Lihat Detail</a>
-      </div>
-    </div>
-      </div>
-
-      <div class="col-md-4 mt-3">
-       <div class="card  h-100">
-        <img src="img/minuman/kopi hitam.png" class="card-img-top" alt="...">
-          <div class="card-body">
-          <h5 class="card-title">Kopi Hitam</h5>
-          <p class="card-text">1 gelas</p>
-        <p class="card-text">Rp. 5.000</p>
-        <a href="../tubes/page/m_KopiHitam.php" class="btn btn-primary">Lihaht Detail</a>
-      </div>
-    </div>
-      </div>
-
-      <div class="col-md-4 mt-3">
-       <div class="card  h-100">
-        <img src="img/minuman/piring.png" class="card-img-top" alt="...">
-          <div class="card-body">
-          <h5 class="card-title">Bandrek</h5>
-          <p class="card-text">1 gelas</p>
-        <p class="card-text">Rp. 7.000</p>
-        <a href="../tubes/page/m_bandrek.php" class="btn btn-primary">Lihat Detail</a>
-      </div>
-    </div>
-      </div>
-    </div>
   </div>
 </section>
+
+<!-- list product -->
+<div id="menu" class="container-fluid mt-5 py-5">
+  <div class="container text-center">
+    <h3 class="text-center">Menu</h3>
+
+
+<!-- bagian produk -->
+    <div class="row mt-5 text-center">
+      <?php while($data = mysqli_fetch_array($queryProduk)) {?>
+      <div class="col-md-4 mt-3">
+       <div class="card h-100">
+         <div class="image-produk">
+            <img src="img/image/<?php echo $data['foto']; ?>" class="card-img-top" alt="...">
+         </div>
+          <div class="card-body">
+          <h5 class="card-title"><?php echo $data['nama']; ?></h5>
+          <p class="card-text"><?php echo $data['detail']; ?></p>
+        <p class="card-text text-harga"><b>Rp.<?php echo $data['harga']; ?></b></p>
+        <a href="produk-detail.php?nama=<?php echo $data['nama'];?>" class="btn warna4 text-white">Lihat Detail</a>
+      </div>
+    </div>
+      </div>
+    <?php } ?>
+    
+    </div>
+    <a class="btn btn-outline-warning mt-5 p-2" href="produk.php">See More</a>
+  </div>
+      </div>
 
 
 <?php require "footer.php"; ?>

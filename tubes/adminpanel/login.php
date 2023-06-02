@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -24,12 +26,12 @@
       
               <div class="form-group was-validated">
                 <label for="email" class="form-label">Email Address</label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Masukan Email Addres " required>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Masukan Email Addres " required autocomplete="off">
               </div>
 
               <div class="form-group was-validated">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Masukan Password" required>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Masukan Password" required autocomplete=off>
               </div>
 
               <button type="submit" name="submit" class="btn btn-primary" value="submit">Submit</button>
@@ -67,6 +69,7 @@ if (isset($_POST['submit'])) {
     if (login_cek_nama($nama)) {
       if (cek_data($nama, $pass)) {
         $_SESSION['user'] = $nama;
+        $_SESSION['login']=true;
         header('Location: ../index.php');
       } else {
         echo "Email atau password yang Anda masukkan salah.";

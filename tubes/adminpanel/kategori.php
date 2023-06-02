@@ -1,15 +1,19 @@
 <?php 
 
-require_once "core/init.php";
+require "core/init.php";
 require "../adminpanel/function/db.php";
 
 
 $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
 $jumlahKategori = mysqli_num_rows($queryKategori);
 
+
+if (!isset($_SESSION["login"])) {
+    header("Location:../adminpanel/login.php");
+    exit;
+  }
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,10 +33,10 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
     .no-decoration {
     text-decoration: none;
 }
-
-.homekategori{
-   padding-top: 100px;
-}
+.kategori{
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
 </style>
 <body>
     <!-- navbar -->
@@ -40,7 +44,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
     
 
     <!-- container -->
-    <div class="container mt-5 homekategori">
+    <div class="container mt-5 kategori">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
@@ -62,11 +66,11 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
     <form action="" method="post">
         <div>
             <label for="kategori">Kategori</label>
-            <input type="text" id="kategori" name="kategori" placeholder="Input Nama Kategori" class="form-control mt-3" required>
+            <input type="text" id="kategori" name="kategori" placeholder="Input Nama Kategori" class="form-control mt-3" required autocomplete=off>
         </div>
 
         <div class="mt-4">
-            <button type="submit" class="btn btn-primary" name="simpan-kategori">Simpan</button>
+            <button type="submit" class="btn btn-primary form-control " name="simpan-kategori">Simpan</button>
         </div>
     </form>
 
@@ -75,7 +79,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
         $kategori = htmlspecialchars($_POST['kategori']);
 
         // Mengecek apakah kategori sudah ada di database
-        $queryExist = mysqli_query($link, "SELECT nama_kategori FROM kategori WHERE nama_kategori = '$kategori'");
+        $queryExist = mysqli_query($link, "SELECT nama FROM kategori WHERE nama = '$kategori'");
         $jumlahDataKategoriBaru = mysqli_num_rows($queryExist);
 
         if ($jumlahDataKategoriBaru > 0) {
@@ -87,7 +91,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
         } 
         else {
             // Menyimpan kategori baru ke database
-            $querySimpan = mysqli_query($link, "INSERT INTO kategori (nama_kategori) VALUES ('$kategori')");
+            $querySimpan = mysqli_query($link, "INSERT INTO kategori (nama) VALUES ('$kategori')");
 
             if ($querySimpan) {
                 ?>
@@ -154,7 +158,7 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
                                 </td>
                                 <td>
                                     <?php 
-                                    echo $data['nama_kategori'];
+                                    echo $data['nama'];
                                     ?>
                                 </td>
                                 <td> 
@@ -175,11 +179,12 @@ $jumlahKategori = mysqli_num_rows($queryKategori);
     </div>
 
 
-
+   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
+
 </html>

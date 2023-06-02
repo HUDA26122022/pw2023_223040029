@@ -8,6 +8,10 @@ require "../adminpanel/function/db.php";
     $query = mysqli_query($link, "SELECT * FROM kategori WHERE id = '$id'");
     $data = mysqli_fetch_array($query);
     
+    if (!isset($_SESSION["login"])) {
+        header("Location:../adminpanel/login.php");
+        exit;
+      }
 ?>
 
 
@@ -28,22 +32,57 @@ require "../adminpanel/function/db.php";
     
     <title>Detail Kategori</title>
 </head>
+<style>
+     *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .kategori{
+            padding-top: 100px;
+            list-style: none;
+        }
+    
+    .tombol a{
+        text-decoration: none;
+        
+      
+    }
+    .no-decoration {
+    text-decoration: none;
+    
+    }
+</style>
 <body>
     <?php require "navbaradmin.php"; ?>
 
-    <div class="container pt-5 mt-5">
+    <div class="container kategori">
+            <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mt-5 mb-5">
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <a href="../adminpanel/kategori.php" class="no-decoration text-muted"><i class="fa-solid fa-house-chimney ">
+                            </i> Home Kategori</a>      
+                        
+                    </li>
+
+                    <li class="breadcrumb-item active" aria-current="page">  
+                        Detail-kategori
+                    </li>
+                </ol>
+            </nav>
     <h2>Detail Kategori</h2>
 
     <div class="col-12 col-md-6">
             <form action="" method="post">
                 <div>
                     <label for="kategori">kategori</label>
-                    <input type="text" name="kategori" id="kategori" class="form-control mt-3 text-center" value="<?php echo $data['nama_kategori'];?>" >
+                    <input type="text" name="kategori" id="kategori" class="form-control mt-3 text-center" value="<?php echo $data['nama'];?>" >
                 </div>
 
                 <div class="mt-5 d-flex justify-content-between">
-                      <button type="submit" class="btn btn-primary" name="edit-btn">Edit</button>
-                      <button type="submit" class="btn btn-danger" name="delete-btn">Delete</button>  
+                      <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah Data Yang Di Masukan Sudah Benar!!!');" name="edit-btn">Edit</button>
+                      <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?');" name="delete-btn">Delete</button>  
                 </div>
             </form>
 
@@ -56,14 +95,14 @@ require "../adminpanel/function/db.php";
 
             $kategori =htmlspecialchars($_POST['kategori']);
 
-            if($data['nama_kategori']==$kategori){
+            if($data['nama']==$kategori){
             ?>
                 <meta http-equiv="refresh" content="1; url=kategori.php"/>
             
             <?php
             } 
             else{
-                $query = mysqli_query($link, "SELECT * FROM kategori WHERE nama_kategori = '$kategori'");
+                $query = mysqli_query($link, "SELECT * FROM kategori WHERE nama = '$kategori'");
                 $jumlahData = mysqli_num_rows($query);
 
                 if($jumlahData > 0 ){
@@ -77,7 +116,7 @@ require "../adminpanel/function/db.php";
                 }
                 else{
                     // meng update nama data yang ada di data base
-                    $querySimpan = mysqli_query($link, "UPDATE kategori SET nama_kategori ='$kategori' WHERE id = '$id'");
+                    $querySimpan = mysqli_query($link, "UPDATE kategori SET nama ='$kategori' WHERE id = '$id'");
                     
                     
                     if ($querySimpan) {
@@ -98,7 +137,21 @@ require "../adminpanel/function/db.php";
          
 
          if(isset($_POST['delete-btn'])){
-           $queryDelete = mysqli_query($link, "DELETE FROM kategori WHERE id = '$id'");
+           $queryCheck = mysqli_query($link, "SELECT * FROM produck WHERE kategori_id='$id'");
+           $dataCount = mysqli_num_rows($queryCheck);
+
+           if ($dataCount > 0){
+            ?>
+
+            <div class="alert alert-warning text-center mt-3" role="alert">
+                 Kategori tidak bisa di hapus karena sudah di gunakan di produk
+            </div>
+
+            <?php
+            die();
+           }
+           
+            $queryDelete = mysqli_query($link, "DELETE FROM kategori WHERE id = '$id'");
         
            if($queryDelete) {
             ?>
@@ -118,6 +171,8 @@ require "../adminpanel/function/db.php";
         </div>
     </div>
 
+    <!-- bagian penutup -->
+   
        <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>

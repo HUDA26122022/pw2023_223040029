@@ -15,6 +15,11 @@ $jumlahProduck = mysqli_num_rows($queryProduck);
 if ( !isset($_SESSION['user'])){  //! = negasi
    header('localtion: login.php');
 }
+
+if (!isset($_SESSION["login"])) {
+    header("Location:../adminpanel/login.php");
+    exit;
+  }
 ?>
 
 

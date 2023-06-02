@@ -18,7 +18,7 @@
               <a class="nav-link  text-white" href="product.php">Product</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  text-white" href="logout.php">logout</a>
+              <a class="nav-link  text-white" onclick="return confirm('Apakah Anda Yakin Ingin Keluar!!');" href="logout.php">logout</a>
             </li>
           </ul>
         </div>

@@ -6,26 +6,41 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Beranda</a>
+      <ul class="navbar-nav fs-5 ">
+       <li class="nav-item dropdown">
+          <a class="nav-link " href="index.php">Beranda</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="makanan.php">Makanan</a>
+          <a class="nav-link" href="produk.php">Produk</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="minuman.php">minuman</a>
+          <a class="nav-link" href="tentang-kami.php">Tentang kami</a>
         </li>
       </ul>
-    <!-- <div class="ms-auto login">
-        <a href="" class="">
+    <div class="ms-auto login">
+        <a href="keranjang.php" class="">
             <img src="img/icons/keranjang.png" width="20" height="20" alt="">
         </a>
-        <a class="" href="../tubes/adminpanel/login.php"> 
-            <b>Login</b> 
-             <img src="img/icons/login.png" width="20" height="20" alt="">
-        </a>
-      </div> -->
+
+        <?php
+            if ($user_logged_in) {
+                // Jika pengguna sudah login, tampilkan gambar
+                ?>
+                <a href="adminpanel/index.php" class="my-element">
+                    <img src="img/icons/default.png" width="45" alt="Profile Image">
+                </a>
+                <?php
+            } else {
+                // Jika pengguna belum login, tampilkan tombol Login
+                ?>
+                <a href="../tubes/adminpanel/login.php">
+                  <b>Login</b>
+                  <img src="img/icons/login.png" width="20" height="20" alt=""> 
+                </a>
+                <?php
+            }
+        ?>
+      </div>
     </div>
   </div>
 </nav>
