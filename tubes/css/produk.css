@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* produk */
+.baner-produk{
+    background: url(../img/background/1.png) no-repeat center center;
+    background-size:cover;
+    height: 46vh;
+    color: #fff;
+    background-position: 50%  100%;
+}
+
+.warna1 {
+    background-color:#61481C ;
+}
+
+.warna2 {
+    background-color: #A47E3B;
+}
+
+.warna3 {
+    background-color:#BF9742 ;
+}
+
+.warna4 {
+    background-color:#E6B325 ;
+}
+.warna5 {
+    background-color: #000033;
+}
+
+.text-login{
+    text-decoration: none;
+    color: black;
+}
+
+.my-element {
+    margin-left: 20px;
+}
+
+.skill-image{
+    border-radius:10px ;
+    /* background-color: #2f00ff; */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    display: block;
+    transition: 0.5s;
+    margin:80px 30px ;
+    
+}
+
+.list-group a {
+    text-decoration: none;
+}
+
+.font-text h1{
+    font-family: 'Dancing Script', cursive;
+    font-size: 45px;
+}
+
+.font{
+    font-family: 'Acme', sans-serif;
+}

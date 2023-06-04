@@ -31,6 +31,9 @@ require "../adminpanel/function/db.php";
 
     
     <title>Detail Kategori</title>
+    <link rel="icon" href="img/icons/logo1.png">
+    
+
 </head>
 <style>
      *{

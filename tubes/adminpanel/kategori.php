@@ -13,6 +13,22 @@ if (!isset($_SESSION["login"])) {
     exit;
   }
 
+  // get produk by nama produk/keyword
+if(isset($_GET['keyword'])){
+    $queryKategori = mysqli_query($link, "SELECT * FROM kategori WHERE nama LIKE '%$_GET[keyword]%'");
+}
+// get produk by kategori
+else if(isset($_GET['kategori'])){
+    $queryKategori = mysqli_query($link, "SELECT id FROM kategori WHERE nama ='$_GET[kategori]' ");
+    $kategoriId = mysqli_fetch_array($queryKategori);
+    
+    $queryKategori = mysqli_query($link, "SELECT * FROM kategori WHERE kategori_id='$kategoriId[id]'");
+}
+// get produk default
+else{
+  $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
+}
+$queryDate = mysqli_num_rows($queryKategori);
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +38,7 @@ if (!isset($_SESSION["login"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kategori</title>
+    <link rel="icon" href="img/icons/logo1.png">
 
      <!-- bosstrap -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -121,8 +138,12 @@ if (!isset($_SESSION["login"])) {
         <!-- tabel kategori -->
         <div class="mt-5">
             <h2>List Kategori</h2>
-
-
+            <form action="kategori.php" method="get">
+                <div class="input-group my-3">
+                     <input type="text" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
+                        <button type="submit" class="btn warna3 text-white"> Telusuri</button>
+                </div>
+            </form>
             <div class="table-responsive mt-4">
                 <table class="table">
                     <!-- atasnya table -->
@@ -136,6 +157,15 @@ if (!isset($_SESSION["login"])) {
                     </thead>
                     <!-- dalamnya table -->
                     <tbody>
+                    <?php 
+                     if($queryDate < 1){
+                        ?>
+                        <td colspan=3 class="text-center">Data Kategori Tidak Ada</td>
+                        
+                        <?php
+                     }
+                    
+                    ?>
                        <?php 
                        
                        if($jumlahKategori==0){

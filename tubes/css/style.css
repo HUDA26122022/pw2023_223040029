@@ -60,14 +60,11 @@
     color: white;
 }
 
-
-
- .login a {
+.login a {
     text-decoration: none;
     color:rgb(0, 0, 0);
     
  }
-
 
 .text-harga {
     font-size: 23px;
@@ -80,28 +77,26 @@
     object-position: center;
 }
 
-/* produk */
-.baner-produk{
-    background: url(../img/background/1.png) no-repeat center center;
-    background-size:cover;
-    height: 46vh;
-    color: #fff;
-    background-position: 50%  100%;
-}
-
-
 .my-element {
     margin-left: 20px;
 }
-
+/* 
 .skill-image{
 border-radius:10px ;
-/* background-color: #2f00ff; */
 position: relative;
 overflow: hidden;
 border-radius: 10px;
 display: block;
 transition: 0.5s;
 margin:80px 30px ;
+} */
 
+/* font */
+.container h1{
+    font-family: 'Lobster', cursive;
+    font-size: 100px;
+}
+
+.text-banner h2{
+    font-family: 'Dancing Script', cursive;
 }

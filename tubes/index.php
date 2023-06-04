@@ -8,16 +8,27 @@ $queryProduk = mysqli_query($link, "SELECT id, nama, harga, foto, detail FROM pr
 session_start();
 
 // Periksa apakah pengguna sudah login berdasarkan informasi session
-if (isset($_SESSION['user'])) {
-    // Pengguna sudah login
-    $user_logged_in = true;
+if (isset($_SESSION['role'])) {
+  // Pengguna sudah login
+  if ($_SESSION['role'] == 'admin') {
+      $user_logged_in = 'admin';
+  } else {
+      $user_logged_in = 'user';
+  }
+  $user_logged_in = true;
 } else {
-    // Pengguna belum login
-    $user_logged_in = false;
+  // Pengguna belum login
+  $user_logged_in = false;
 }
+
 
 $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
 
+// if (basename($_SERVER['PHP_SELF']) !== 'index.php') {
+//   // Redirect pengguna ke halaman index jika mencoba mengakses halaman lain
+//   header('Location: index.php');
+//   exit();
+// }
 ?>
 
 <!doctype html>
@@ -27,26 +38,28 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <title>SERABI RASA SAYANG</title>
     <link rel="icon" href="img/icons/logo1.png">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Lobster&family=Satisfy&display=swap" rel="stylesheet">
 
 
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <style>
-    .my-element {
+  <!-- <style>
+    /* .my-element {
         margin-left: 20px;
     }
 
     .skill-image{
     border-radius:10px ;
-    /* background-color: #2f00ff; */
     position: relative;
     overflow: hidden;
     border-radius: 10px;
@@ -54,30 +67,32 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
     transition: 0.5s;
     margin:80px 30px ;
     
-}
+} */
 
 
 
-</style>
+</style> -->
   <body id="page-top">
+<!-- navbar -->
+<?php require "navbar.php"; ?>
+
 
 <!-- banner -->
 <section id="utama" class="container-fluid banner d-flex align-items-center" id="telusuri">
-  <div class="container text-center">
+  <div class="container text-center text-banner">
     <h2>SERABI RASA SAYANG</h2>
     <h5>mau cari apa ?</h5>
     <div class="col-8 offset-2">
       <form method="get" action="produk.php">
     <div class="input-group my-3">
-    <input type="text" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
+    <input type="text" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword" autocomplete="off">
     <button type="submit" class="btn warna3 text-white"> Telusuri</button>
     </div>
       </form>
     </div>
 </div>
 </section>
-<!-- navbar -->
-<?php require "navbar.php"; ?>
+
 
 
 <!-- kategori -->
@@ -92,12 +107,12 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
     <div class="row mt-5">
       <div class="col-md-4 mb-2">
           <div class="produck kategori-makanan1 d-flex justify-content-center align-items-center ">
-            <h4 class="text-white text-kategori "><a href="produk.php?kategori=Surabi">Serabi</a></h4>
+            <h4 class="text-white text-kategori "><a href="produk.php?kategori=Serabi">Serabi</a></h4>
         </div>
       </div>
       <div class="col-md-4 mb-2">
       <div class="produck kategori-makanan2 d-flex justify-content-center align-items-center ">
-            <h4 class="text-white text-kategori "><a href="produk.php?kategori=Minuman">Bajigur</a></h4>
+            <h4 class="text-white text-kategori "><a href="produk.php?kategori=Minuman">Minuman</a></h4>
         </div>
       </div>
       <div class="col-md-4 mb-2">
@@ -155,4 +170,5 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
 </html>

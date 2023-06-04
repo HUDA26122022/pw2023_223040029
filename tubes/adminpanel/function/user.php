@@ -2,17 +2,18 @@
 
 use LDAP\Result;
 
-    function register_user($nama, $pass, $copass){
+    function register_user($nama, $pass, $copass,$role){
         global $link;
 
         //MANJAGA SQL INJECTION
         $nama   = mysqli_real_escape_string($link,$nama);
         $pass   = mysqli_real_escape_string($link,$pass);
         $copass = mysqli_real_escape_string($link,$copass);
+        $role   = mysqli_real_escape_string($link,$role);
 
             $pass   = password_hash($pass, PASSWORD_DEFAULT);  //BIAR PASSNYA RANDOM KETIKA DI SQL
             $copass = password_hash($copass, PASSWORD_DEFAULT);
-            $query  = "INSERT INTO users (email,password,konfirmasi_password) VALUES ('$nama', '$pass', '$copass')";
+            $query  = "INSERT INTO users (email,password,konfirmasi_password,role) VALUES ('$nama', '$pass', '$copass', '$role')";
 
                 if (mysqli_query($link, $query)){
                     return true;

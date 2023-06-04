@@ -18,28 +18,63 @@
         </li>
       </ul>
     <div class="ms-auto login">
-        <a href="keranjang.php" class="">
+        <!-- <a href="keranjang.php" class="text-login">
             <img src="img/icons/keranjang.png" width="20" height="20" alt="">
-        </a>
+        </a> -->
 
-        <?php
-            if ($user_logged_in) {
-                // Jika pengguna sudah login, tampilkan gambar
-                ?>
-                <a href="adminpanel/index.php" class="my-element">
-                    <img src="img/icons/default.png" width="45" alt="Profile Image">
-                </a>
-                <?php
-            } else {
-                // Jika pengguna belum login, tampilkan tombol Login
-                ?>
-                <a href="../tubes/adminpanel/login.php">
-                  <b>Login</b>
-                  <img src="img/icons/login.png" width="20" height="20" alt=""> 
-                </a>
-                <?php
-            }
-        ?>
+<?php
+// Pastikan variabel $user_logged_in sudah didefinisikan dan memiliki nilai yang benar
+// Misalnya, jika menggunakan session untuk login:
+if (isset($_SESSION['role'])) {
+  $user_logged_in = $_SESSION['role'];
+
+  if ($user_logged_in == 'admin') {
+    // Jika pengguna sudah login sebagai admin, tampilkan menu admin
+    ?>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- Tampilkan menu admin -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="img/icons/default.png" width="45" alt="Profile Image">
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="adminpanel/index.php">Halaman Admin</a></li>
+          <li><a class="dropdown-item" href="keranjang.php">Keranjang</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" onclick="return confirm('Apakah Anda Yakin Ingin Keluar!!');" href="logout.php">logout <img src="img/icons/login.png" alt="" width="20" height="20"></a></li>
+        </ul>
+      </li>
+    </ul>
+    <?php
+  } else {
+    // Jika pengguna sudah login, tetapi bukan admin, tampilkan menu pengguna biasa
+    ?>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- Tampilkan menu pengguna biasa -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="img/icons/default.png" width="45" alt="Profile Image">
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="keranjang.php">Keranjang</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" onclick="return confirm('Apakah Anda Yakin Ingin Keluar!!');" href="logout.php">logout <img src="img/icons/login.png" alt="" width="20" height="20"></a></li>
+        </ul>
+      </li>
+    </ul>
+    <?php
+  }
+} else {
+  // Jika pengguna belum login, tampilkan tombol Login
+  ?>
+  <a href="../tubes/adminpanel/login.php" class="text-login">
+    <b>Login</b>
+    <img src="img/icons/login.png" width="20" height="20" alt=""> 
+  </a>
+  <?php
+}
+?>
+
       </div>
     </div>
   </div>

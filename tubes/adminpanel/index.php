@@ -12,6 +12,13 @@ $queryProduck = mysqli_query($link, "SELECT * FROM produck");
 $jumlahProduck = mysqli_num_rows($queryProduck);
 
 
+session_start();
+
+if ($_SESSION['role'] !== 'admin') {
+  header('Location: ../index.php');
+  exit;
+}
+
 if ( !isset($_SESSION['user'])){  //! = negasi
    header('localtion: login.php');
 }
@@ -20,6 +27,7 @@ if (!isset($_SESSION["login"])) {
     header("Location:../adminpanel/login.php");
     exit;
   }
+
 ?>
 
 
@@ -34,6 +42,7 @@ if (!isset($_SESSION["login"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Document</title>
+    <link rel="icon" href="img/icons/logo1.png">
 
     <!-- css -->
     <link rel="stylesheet" href="../css/admin.css">

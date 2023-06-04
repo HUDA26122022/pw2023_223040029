@@ -4,13 +4,18 @@ require "koneksi.php";
 session_start();
 
 // Periksa apakah pengguna sudah login berdasarkan informasi session
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['role'])) {
     // Pengguna sudah login
     $user_logged_in = true;
 } else {
     // Pengguna belum login
     $user_logged_in = false;
 }
+
+if (!isset($_SESSION["login"])) {
+    header("Location: adminpanel/login.php");
+    exit;
+  }
  ?>
 
 <!DOCTYPE html>
@@ -31,9 +36,23 @@ if (isset($_SESSION['user'])) {
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<style>
+    .text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        color: rgb(0, 0, 0, 0.4);
+    }
+</style>
 <body>
     <!-- navbar -->
 <?php require "navbar.php"; ?>
+
+
+   
+            <h1 class="text">halaman ini belum selesai</h1>
 
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

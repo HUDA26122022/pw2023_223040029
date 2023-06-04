@@ -9,7 +9,7 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
 session_start();
 
 // Periksa apakah pengguna sudah login berdasarkan informasi session
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['role'])) {
     // Pengguna sudah login
     $user_logged_in = true;
 } else {
@@ -43,38 +43,25 @@ $queryDate = mysqli_num_rows($queryProduk);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toko Online | Produk</title>
+    <link rel="icon" href="img/icons/logo1.png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/produk.css">
+
+    <!-- font google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Lobster&family=Satisfy&display=swap" rel="stylesheet">
+
 </head>
-<style>
-    .my-element {
-        margin-left: 20px;
-    }
-
-    .skill-image{
-    border-radius:10px ;
-    /* background-color: #2f00ff; */
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    display: block;
-    transition: 0.5s;
-    margin:80px 30px ;
-    
-}
-
-
-
-</style>
 <body>
     <!-- nav -->
     <?php require "navbar.php"; ?>
 
     <!-- banner -->
     <div class="container-fluid baner-produk d-flex align-items-center">
-        <div class="container">
+        <div class="container font-text">
             <h1 class="text-white text-center mt-5">Produk</h1>
         </div>
     </div>
@@ -84,7 +71,7 @@ $queryDate = mysqli_num_rows($queryProduk);
         <div class="row">
         
             <div class="col-lg-3 mb-5">
-                <h1 class="mb-3">Kategori</h1>
+                <h1 class="mb-3 font">Kategori</h1>
                 <ul class="list-group text-kategori">
                     <?php while($kategori = mysqli_fetch_array($queryKategori)) {?>
                         <a href="produk.php?kategori=<?php echo $kategori['nama']; ?>">
@@ -95,7 +82,7 @@ $queryDate = mysqli_num_rows($queryProduk);
             </div>
            
             <div class="col-lg-9" >
-                <h1 class="text-center">Produk</h1>
+                <h1 class="text-center mb-3 font">Produk</h1>
                 <div class="row">
                     <?php 
                     if($queryDate < 1){
@@ -107,7 +94,7 @@ $queryDate = mysqli_num_rows($queryProduk);
                     
                     ?>
                 <?php while($produk = mysqli_fetch_array($queryProduk)) {?>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-3">
                         <div class="card h-100">
                             <div class="image-produk">
                                 <img src="img/image/<?php echo $produk['foto']; ?>" class="card-img-top" alt="...">

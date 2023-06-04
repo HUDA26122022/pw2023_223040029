@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../adminpanel/view/fromregister&login.css">
     <title>Registrasi</title>
-    
+    <link rel="icon" href="img/icons/logo1.png">
   </head>
   <body>
 
@@ -35,6 +35,9 @@
                 <label for="password" class="form-label">konfirmasi Password</label>
                 <input type="password" name="konfirmasi_password" class="form-control" id="password" placeholder="konfirmasi Password" required>
               </div>
+
+              <input type="hidden" name="role" id="role" value="user">
+
 
               <button type="submit" name="submit" class="btn btn-primary" value="submit">Submit</button>
               <button type="reset" name = "reset" class="btn btn-danger" value="reset">Reset</button>
@@ -68,6 +71,7 @@ if (isset($_POST['submit'])) {
   $nama = $_POST['email'];
   $pass = $_POST['password'];
   $copass = $_POST['konfirmasi_password'];
+  $role = $_POST['role'];
   
 
   if (!empty(trim($nama)) && !empty(trim($pass)) && !empty(trim($copass))) {
@@ -80,7 +84,7 @@ if (isset($_POST['submit'])) {
       } else {
         // Konfirmasi password sesuai
         // Lanjutkan dengan proses pendaftaran pengguna
-        if (register_user($nama, $pass, $copass)) {
+        if (register_user($nama, $pass, $copass,$role)) {
           // Periksa apakah pengguna telah masuk atau belum
           if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             // Jika pengguna belum masuk, arahkan ke halaman login

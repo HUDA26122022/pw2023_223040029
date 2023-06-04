@@ -24,6 +24,24 @@ function generateRandomString($length = 10){
     return $randomString;
 }
 
+// get produk by nama produk/keyword
+if(isset($_GET['keyword'])){
+    $queryProduk = mysqli_query($link, "SELECT a.*, b.nama AS nama_kategori FROM produck a JOIN kategori b ON a.kategori_id = b.id WHERE a.nama LIKE '%$_GET[keyword]%'");
+
+}
+// get produk by kategori
+else if(isset($_GET['kategori'])){
+    $queryProduck = mysqli_query($link, "SELECT id FROM kategori WHERE nama ='$_GET[kategori]' ");
+    $kategoriId = mysqli_fetch_array($queryProduck);
+    
+    $queryProduck = mysqli_query($link, "SELECT * FROM produck WHERE kategori_id='$kategoriId[id]'");
+}
+// get produk default
+else{
+    $queryProduck = mysqli_query($link, "SELECT * FROM produck");
+}
+
+$queryDate = mysqli_num_rows($queryProduk);
 ?>
 
 
@@ -35,11 +53,14 @@ function generateRandomString($length = 10){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produk</title>
+    <link rel="icon" href="img/icons/logo1.png">
     <!-- bosstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- css -->
     <link rel="stylesheet" href="../css/admin.css">
+
+
 </head>
 <style>
       .no-decoration {
@@ -55,7 +76,7 @@ function generateRandomString($length = 10){
             padding-bottom: 50px;
         }
 </style>
-<body>
+<body >
    <!-- navbar -->
    <?php require "navbaradmin.php"; ?>
 
@@ -133,7 +154,11 @@ function generateRandomString($length = 10){
                 <button type="submit" class="btn btn-primary form-control" name="simpan">Simpan</button>
             </div>
             </form>
-
+            <div>
+                <p>unduh pdf</p>
+            </div>
+           <a href="cetakpdf.php"> dwonload pdf di sini</a>
+           
             <!-- bagian vailed data -->
             <?php 
             
@@ -217,16 +242,23 @@ function generateRandomString($length = 10){
 
 
         <!-- bagian tabel -->
-        <div class="mt-5">
+        <div class="mt-5" id="invoice">
             <h2>List Produk</h2>
+            <form method="get" action="product.php">
+                <div class="input-group my-3">
+                    <input type="text" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
+                    <button type="submit" class="btn warna3 text-white"> Telusuri</button>
+                </div>
+            </form>
 
         <!-- tabel list -->
         <div class="table-responsive mt-4 mb-5">
-            <table class="table">
+            <table class="table"  >
                  <!-- atasnya table -->
                 <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Foto</th>
                             <th>Nama</th>
                             <th>Kategori</th>
                             <th>Harga</th>
@@ -237,12 +269,21 @@ function generateRandomString($length = 10){
 
                 <!-- bagian isi tabel -->
                 <tbody>
+                <?php 
+                     if($queryDate < 1){
+                        ?>
+                        <td colspan=7 class="text-center">Data Kategori Tidak Ada</td>
+                        
+                        <?php
+                     }
+                    
+                    ?>
                     <?php 
                     if($jumlahProduk==0){
                     ?>
 
                         <tr>
-                            <td colspan=6 class="text-center">Data Produk Tidak Ada</td>
+                            <td colspan=7 class="text-center">Data Produk Tidak Ada</td>
                         </tr>  
 
                     <?php
@@ -254,6 +295,7 @@ function generateRandomString($length = 10){
 
                             <tr>
                                 <td><?= $jumlah; ?></td>
+                                <td><img src="../img/image/<?php echo $data['foto']; ?>" width="50"></td>
                                 <td><?php echo $data['nama']; ?></td>
                                 <td><?php echo $data['nama_kategori']; ?></td>
                                 <td><?php echo $data['harga']; ?></td>
