@@ -6,13 +6,19 @@ $queryProduk = mysqli_query($link, "SELECT * FROM produck WHERE nama='$nama'");
 $produk = mysqli_fetch_array($queryProduk);
 
 session_start();
+
 // Periksa apakah pengguna sudah login berdasarkan informasi session
 if (isset($_SESSION['role'])) {
-    // Pengguna sudah login
-    $user_logged_in = true;
+  // Pengguna sudah login
+  if ($_SESSION['role'] == 'admin') {
+      $user_logged_in = 'admin';
+  } else {
+      $user_logged_in = 'user';
+  }
+  $user_logged_in = true;
 } else {
-    // Pengguna belum login
-    $user_logged_in = false;
+  // Pengguna belum login
+  $user_logged_in = false;
 }
 
 ?>
@@ -30,7 +36,7 @@ if (isset($_SESSION['role'])) {
      <!-- Bootstrap CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/produk.css">
 </head>
 <style>
     .my-element {
@@ -48,6 +54,27 @@ if (isset($_SESSION['role'])) {
     margin:80px 30px ;
     
 }
+    /* bagian text login */
+    .text-login a {
+        text-decoration: none;
+        color: #000033;
+    }
+
+    .text-login a:hover{
+        color: white;
+    }
+    .text-login img:hover{
+        transform: scale(1.1);
+    }
+
+    .lihat-detail a:hover{
+        transform: scale(1.1);
+    }
+    .img-profil a img:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+</style>
 </style>
 <body>
     <!-- navbar -->
@@ -65,7 +92,7 @@ if (isset($_SESSION['role'])) {
                     <h1 class=" text-center">Produk</h1>
                         <p class="fs-5 mt-2"><span>Nama : <b> <?= $produk['nama']; ?></b></span></p>
                         <p class="fs-5 "><span>Rasa : </span><?= $produk['detail']; ?></p>
-                        <p class="fs-5 "><span> Harga : </span><?= $produk['harga']; ?></p>
+                        <p class="fs-5 "><span> Harga : </span> Rp. <?= number_format($produk['harga']); ?></p>
                         <p class="fs-5 "><span> Status Ketersediaan : </span><?= $produk['ketersediaan_stok']; ?></p>
 
                         <form action="post">

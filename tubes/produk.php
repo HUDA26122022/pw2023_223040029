@@ -10,12 +10,18 @@ session_start();
 
 // Periksa apakah pengguna sudah login berdasarkan informasi session
 if (isset($_SESSION['role'])) {
-    // Pengguna sudah login
-    $user_logged_in = true;
+  // Pengguna sudah login
+  if ($_SESSION['role'] == 'admin') {
+      $user_logged_in = 'admin';
+  } else {
+      $user_logged_in = 'user';
+  }
+  $user_logged_in = true;
 } else {
-    // Pengguna belum login
-    $user_logged_in = false;
+  // Pengguna belum login
+  $user_logged_in = false;
 }
+
 
 // get produk by nama produk/keyword
 if(isset($_GET['keyword'])){
@@ -55,9 +61,33 @@ $queryDate = mysqli_num_rows($queryProduk);
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Lobster&family=Satisfy&display=swap" rel="stylesheet">
 
 </head>
+<style>
+    /* bagian text login */
+    .text-login a {
+        text-decoration: none;
+        color: #000033;
+    }
+
+    .text-login a:hover{
+        color: white;
+    }
+    .text-login img:hover{
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+
+    .lihat-detail a:hover{
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+    .img-profil a img:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+</style>
 <body>
     <!-- nav -->
-    <?php require "navbar.php"; ?>
+    <?php require ("navbar.php"); ?>
 
     <!-- banner -->
     <div class="container-fluid baner-produk d-flex align-items-center">
@@ -81,7 +111,7 @@ $queryDate = mysqli_num_rows($queryProduk);
                 </ul>
             </div>
            
-            <div class="col-lg-9" >
+            <div class="col-lg-9"  >
                 <h1 class="text-center mb-3 font">Produk</h1>
                 <div class="row">
                     <?php 
@@ -93,9 +123,10 @@ $queryDate = mysqli_num_rows($queryProduk);
                     }
                     
                     ?>
+                    
                 <?php while($produk = mysqli_fetch_array($queryProduk)) {?>
                     <div class="col-md-4 mt-3">
-                        <div class="card h-100">
+                        <div class="card h-100 lihat-detail">
                             <div class="image-produk">
                                 <img src="img/image/<?php echo $produk['foto']; ?>" class="card-img-top" alt="...">
                                 </div>

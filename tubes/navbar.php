@@ -6,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav fs-5 ">
+      <ul class="navbar-nav fs-5 text-nav">
        <li class="nav-item dropdown">
           <a class="nav-link " href="index.php">Beranda</a>
         </li>
@@ -14,7 +14,7 @@
           <a class="nav-link" href="produk.php">Produk</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="tentang-kami.php">Tentang kami</a>
+          <a class="nav-link" href="about.php">Tentang kami</a>
         </li>
       </ul>
     <div class="ms-auto login">
@@ -33,12 +33,13 @@ if (isset($_SESSION['role'])) {
     ?>
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <!-- Tampilkan menu admin -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <li class="nav-item dropdown img-profil">
+        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="img/icons/default.png" width="45" alt="Profile Image">
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="adminpanel/index.php">Halaman Admin</a></li>
+          <li><a class="dropdown-item" href="keranjang.php">Pesanan</a></li>
           <li><a class="dropdown-item" href="keranjang.php">Keranjang</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" onclick="return confirm('Apakah Anda Yakin Ingin Keluar!!');" href="logout.php">logout <img src="img/icons/login.png" alt="" width="20" height="20"></a></li>
@@ -51,11 +52,12 @@ if (isset($_SESSION['role'])) {
     ?>
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <!-- Tampilkan menu pengguna biasa -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <li class="nav-item dropdown img-profil">
+        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="img/icons/default.png" width="45" alt="Profile Image">
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="keranjang.php">Pesanan</a></li>
           <li><a class="dropdown-item" href="keranjang.php">Keranjang</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" onclick="return confirm('Apakah Anda Yakin Ingin Keluar!!');" href="logout.php">logout <img src="img/icons/login.png" alt="" width="20" height="20"></a></li>
@@ -67,10 +69,12 @@ if (isset($_SESSION['role'])) {
 } else {
   // Jika pengguna belum login, tampilkan tombol Login
   ?>
-  <a href="../tubes/adminpanel/login.php" class="text-login">
+  <div class="text-login">
+  <a href="../tubes/adminpanel/login.php" >
     <b>Login</b>
     <img src="img/icons/login.png" width="20" height="20" alt=""> 
   </a>
+  </div>
   <?php
 }
 ?>

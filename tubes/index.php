@@ -44,11 +44,10 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!-- font -->
+    <!-- font google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Lobster&family=Satisfy&display=swap" rel="stylesheet">
-
 
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
@@ -74,17 +73,17 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
 </style> -->
   <body id="page-top">
 <!-- navbar -->
-<?php require "navbar.php"; ?>
+<?php require ("navbar.php"); ?>
 
 
 <!-- banner -->
 <section id="utama" class="container-fluid banner d-flex align-items-center" id="telusuri">
   <div class="container text-center text-banner">
-    <h2>SERABI RASA SAYANG</h2>
+    <h2>Serabi Rasa Sayang</h2>
     <h5>mau cari apa ?</h5>
     <div class="col-8 offset-2">
       <form method="get" action="produk.php">
-    <div class="input-group my-3">
+    <div class="input-group my-3 telusuri">
     <input type="text" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword" autocomplete="off">
     <button type="submit" class="btn warna3 text-white"> Telusuri</button>
     </div>
@@ -100,9 +99,7 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
 <div id="produck" class="container-fluid py-5">
 
   <div class="container text-center">
-    <div class="kosong" id="kosong" style="opacity: 0;"><h1>kosong</h1></div>
-    <br><br><br>
-    <h3>Produck</h3>
+    <h3 class="font">Produck</h3>
 
     <div class="row mt-5">
       <div class="col-md-4 mb-2">
@@ -130,38 +127,43 @@ $queryKategori = mysqli_query($link, "SELECT * FROM kategori");
   <div id="about" class="container-fluid bg-warning mt-5 pt-5 pb-5">
   <div class="container text-center">
   
-    <h2>Tentang kami</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga corporis qui aliquid consequatur odit quam consectetur, quibusdam explicabo rerum animi ipsam ullam laborum tempora velit ut, illum placeat accusamus.</p>
-  </div>
+    <h2 class="font">Tentang kami</h2>
+    <p>
+        Selamat datang di Serabi Rasa Sayang! 
+      Serabi Rasa Sayang ini menghadirkan berbagai macam pilihan makanan lezat
+      dan minuman segar untuk memanjakan lidah Anda. Spesialisasi kami adalah Serabi, Combro, 
+      dan aneka minuman yang menggugah selera.
+    </p>
+    </div>
   </div>
 </section>
 
 <!-- list product -->
 <div id="menu" class="container-fluid mt-5 py-5">
   <div class="container text-center">
-    <h3 class="text-center">Menu</h3>
+    <h3 class="text-center font">Menu</h3>
 
 
 <!-- bagian produk -->
     <div class="row mt-5 text-center">
       <?php while($data = mysqli_fetch_array($queryProduk)) {?>
       <div class="col-md-4 mt-3">
-       <div class="card h-100">
+       <div class="card h-100 lihat-detail">
          <div class="image-produk">
             <img src="img/image/<?php echo $data['foto']; ?>" class="card-img-top" alt="...">
          </div>
           <div class="card-body">
           <h5 class="card-title"><?php echo $data['nama']; ?></h5>
           <p class="card-text"><?php echo $data['detail']; ?></p>
-        <p class="card-text text-harga"><b>Rp.<?php echo $data['harga']; ?></b></p>
+        <p class="card-text text-harga"><b>Rp. <?php echo number_format($data['harga']); ?></b></p>
         <a href="produk-detail.php?nama=<?php echo $data['nama'];?>" class="btn warna4 text-white">Lihat Detail</a>
       </div>
     </div>
       </div>
     <?php } ?>
     
-    </div>
-    <a class="btn btn-outline-warning mt-5 p-2" href="produk.php">See More</a>
+    </div >
+    <a class="btn btn-outline-warning mt-5 p-2 see-more" href="produk.php">See More</a>
   </div>
       </div>
 

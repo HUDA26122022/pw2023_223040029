@@ -5,12 +5,18 @@ session_start();
 
 // Periksa apakah pengguna sudah login berdasarkan informasi session
 if (isset($_SESSION['role'])) {
-    // Pengguna sudah login
-    $user_logged_in = true;
+  // Pengguna sudah login
+  if ($_SESSION['role'] == 'admin') {
+      $user_logged_in = 'admin';
+  } else {
+      $user_logged_in = 'user';
+  }
+  $user_logged_in = true;
 } else {
-    // Pengguna belum login
-    $user_logged_in = false;
+  // Pengguna belum login
+  $user_logged_in = false;
 }
+
 
 if (!isset($_SESSION["login"])) {
     header("Location: adminpanel/login.php");

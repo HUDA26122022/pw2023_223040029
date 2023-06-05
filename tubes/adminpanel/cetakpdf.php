@@ -25,11 +25,11 @@ $queryKategori=mysqli_query($link, "SELECT * FROM kategori");
     <link rel="stylesheet" href="../css/admin.css">
         <!-- js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="../js/js.js"></script>
+        <script src="../js/js.js"></script>
 </head>
 <body>
      <!-- navbar -->
-     <nav class="navbar navbar-expand-lg navbar-light warna3">
+     <nav class="navbar navbar-expand-lg navbar-light warna3 fixed-top position-fixed">
       <div class="container">
       <a class="navbar-brand" href="#"><img src="../img/icons/logo1.png" alt="" width="80" height="45"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ $queryKategori=mysqli_query($link, "SELECT * FROM kategori");
         <div class="collapse navbar-collapse " id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link text-white" href="../index.php"> 
+            <a class="nav-link text-white" href="index.php"> 
                  Home</a>
             </li>
             <li class="nav-item">
@@ -57,14 +57,14 @@ $queryKategori=mysqli_query($link, "SELECT * FROM kategori");
     <!-- end navbar -->
 
     <div>
-        <div class="container mt-5 ">
-            <h1>DWONLOAD PDF DI SINI</h1>
-            <button class="btn btn-danger" onclick="generatePDF()">dwonload</button>
-            <div class="table-responsive mt-4 mb-5"   id="invoice" >
+        <div class="container mt-5 pt-5 py-5">
+            <h1 class="">DWONLOAD PDF DI SINI</h1>
+            <button class="btn btn-danger mt-3 mb-5" onclick="generatePDF()">dwonload</button>
+            <div class="table-responsive mt-4 mb-5" id="invoice" >
             <table class="table" >
                  <!-- atasnya table -->
                 <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>No.</th>
                             <th>Foto</th>
                             <th>Nama</th>
@@ -91,12 +91,12 @@ $queryKategori=mysqli_query($link, "SELECT * FROM kategori");
                         while($data = mysqli_fetch_array($queryProduk)){
                     ?>
 
-                            <tr>
+                            <tr  class="text-center">
                                 <td><?= $jumlah; ?></td>
                                 <td><img src="../img/image/<?php echo $data['foto']; ?>" width="50"></td>
                                 <td><?php echo $data['nama']; ?></td>
                                 <td><?php echo $data['nama_kategori']; ?></td>
-                                <td><?php echo $data['harga']; ?></td>
+                                <td>Rp. <?php echo number_format( $data['harga']); ?></td>
                                 <td><?php echo $data['ketersediaan_stok']; ?></td>
                             </tr>
 

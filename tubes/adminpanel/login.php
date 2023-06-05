@@ -56,20 +56,12 @@
             <?php
 require_once "core/init.php";
 
-// // Redirect jika pengguna sudah login
-// if (isset($_SESSION['user'])) {
-//   if ($_SESSION['user'] == 'admin@gmail.com') {
-//     header('Location: index.php');
-//   } else {
-//     header('Location: ../index.php');
-//   }
-// }
-if (isset($_SESSION['login'])){
-//  echo "<script>alert('anda sudah login jadi gak bisa kemana mana!')</script>";
-//  exit;
-header('Location: ../index.php');
-exit;
+// Redirect jika pengguna sudah login
+if (isset($_SESSION['login'])) {
+  header('Location: ../index.php');
+  exit;
 }
+
 // Validasi login
 if (isset($_POST['submit'])) {
   $nama = $_POST['email'];
@@ -77,52 +69,34 @@ if (isset($_POST['submit'])) {
 
   $result = mysqli_query($link, "SELECT * FROM users WHERE email = '$nama'");
 
-  // if (!empty(trim($nama)) && !empty(trim($pass))) {
-  //   if (login_cek_nama($nama)) {
-  //     if (cek_data($nama, $pass)) {
-    if (mysqli_num_rows($result) === 1) {
+  if (mysqli_num_rows($result) === 1) {
+    $row = mysqli_fetch_assoc($result);
 
-      // cek password
-      $row = mysqli_fetch_assoc($result);
-      if (password_verify($pass, $row['password'])) {
-  
-        // set session
-        $_SESSION['login'] = true;
-  
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['role'] = $row['role'];
-  
-        if ($row['role'] == 'admin') {
-          header("Location: ../index.php");
-        } elseif ($row['role'] == 'user' ) {
-          header("Location: ../index.php");
-          exit;
-        }else {
-          echo "Email atau password yang Anda masukkan salah.";
-        }
+    if (password_verify($pass, $row['password'])) {
+      // set session
+      $_SESSION['login'] = true;
+      $_SESSION['email'] = $row['email'];
+      $_SESSION['role'] = $row['role'];
+
+      if ($row['role'] == 'admin') {
+        header("Location: ../index.php");
+      } elseif ($row['role'] == 'user') {
+        header("Location: ../index.php");
+        exit;
       } else {
-        echo "Nama yang dimasukkan belum ada!";
+        echo "Email atau password yang Anda masukkan salah.";
       }
     } else {
-      echo 'Tidak boleh kosong.';
-      
+      echo "Email atau password yang Anda masukkan salah.";
     }
-    $error = true;
+  } else {
+    echo "Nama yang dimasukkan belum ada!";
   }
-        // $_SESSION['user'] = $nama;
-        // $_SESSION['login'] = true;
-        // $_SESSION['username'] = $user['username'];
-        // $_SESSION['role'] = ['role'];
 
-      //   if ($nama == 'admin@gmail.com') {
-      //     header('Location: index.php');
-      //   } else {
-      //     header('Location: ../index.php');
-      //   }
-
-//   }
-// }
+  $error = true;
+}
 ?>
+
           </div>
         </div>
       </div>

@@ -30,6 +30,13 @@
 .warna5 {
     background-color: #000033;
 }
+
+/* telusuri */
+.telusuri button:hover{
+ transform: scale(1.1);
+}
+
+
 /* kategori */
 
 .produck {
@@ -55,16 +62,40 @@
     background-position: center;
 }
 
+.kategori-makanan1:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+.kategori-makanan2:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+.kategori-makanan3:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+
+
 .text-kategori a {
     text-decoration: none;
     color: white;
 }
 
-.login a {
+
+
+/* bagian text login */
+.text-login a {
     text-decoration: none;
-    color:rgb(0, 0, 0);
-    
- }
+    color: #000033;
+}
+
+.text-login a:hover{
+    color: white;
+}
+.text-login img:hover{
+    transform: scale(1.1);
+}
 
 .text-harga {
     font-size: 23px;
@@ -77,26 +108,35 @@
     object-position: center;
 }
 
-.my-element {
-    margin-left: 20px;
-}
-/* 
-.skill-image{
-border-radius:10px ;
-position: relative;
-overflow: hidden;
-border-radius: 10px;
-display: block;
-transition: 0.5s;
-margin:80px 30px ;
-} */
 
 /* font */
 .container h1{
     font-family: 'Lobster', cursive;
-    font-size: 100px;
+    
+
 }
 
 .text-banner h2{
     font-family: 'Dancing Script', cursive;
+    font-size: 45px;
+}
+
+/* button */
+.lihat-detail a:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.see-more:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.img-profil a img:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.font {
+    font-family: 'Acme', sans-serif;
 }

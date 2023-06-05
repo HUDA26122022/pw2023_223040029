@@ -66,6 +66,12 @@
   exit;
 }
 
+if (isset($_SESSION['login'])){
+  //  echo "<script>alert('anda sudah login jadi gak bisa kemana mana!')</script>";
+  //  exit;
+  header('Location: ../index.php');
+  exit;
+  }
 // Cek kode konfirmasi password (validasi register)
 if (isset($_POST['submit'])) {
   $nama = $_POST['email'];

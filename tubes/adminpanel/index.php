@@ -12,8 +12,6 @@ $queryProduck = mysqli_query($link, "SELECT * FROM produck");
 $jumlahProduck = mysqli_num_rows($queryProduck);
 
 
-session_start();
-
 if ($_SESSION['role'] !== 'admin') {
   header('Location: ../index.php');
   exit;

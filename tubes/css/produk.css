@@ -32,12 +32,6 @@
 .warna5 {
     background-color: #000033;
 }
-
-.text-login{
-    text-decoration: none;
-    color: black;
-}
-
 .my-element {
     margin-left: 20px;
 }
@@ -66,3 +60,9 @@
 .font{
     font-family: 'Acme', sans-serif;
 }
+
+.pdf{
+    text-decoration: none;
+}
+
+

@@ -1,7 +1,6 @@
 <?php 
-
-require "core/init.php";
-require "../adminpanel/function/db.php";
+// require "core/init.php";
+require "function/db.php";
 
 // menghubungkan ada nya produk
 
@@ -75,6 +74,10 @@ $queryDate = mysqli_num_rows($queryProduk);
             padding-top: 100px;
             padding-bottom: 50px;
         }
+        .pdf a{
+         text-decoration: none;
+         color: black;
+         }
 </style>
 <body >
    <!-- navbar -->
@@ -154,10 +157,11 @@ $queryDate = mysqli_num_rows($queryProduk);
                 <button type="submit" class="btn btn-primary form-control" name="simpan">Simpan</button>
             </div>
             </form>
-            <div>
-                <p>unduh pdf</p>
+            <div class="mt-2 pdf">
+                <label for="pdf">Unduh pdf di sini </label>
+                <a href="cetakpdf.php" class="btn btn-warning" > klik di sini</a>
             </div>
-           <a href="cetakpdf.php"> dwonload pdf di sini</a>
+
            
             <!-- bagian vailed data -->
             <?php 
@@ -246,14 +250,14 @@ $queryDate = mysqli_num_rows($queryProduk);
             <h2>List Produk</h2>
             <form method="get" action="product.php">
                 <div class="input-group my-3">
-                    <input type="text" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
-                    <button type="submit" class="btn warna3 text-white"> Telusuri</button>
+                    <input type="text" id="keyword" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
+                    <button type="submit" id="tombol_cari" class="btn warna3 text-white"> Telusuri</button>
                 </div>
             </form>
 
         <!-- tabel list -->
         <div class="table-responsive mt-4 mb-5">
-            <table class="table"  >
+            <table class="table" id="container">
                  <!-- atasnya table -->
                 <thead>
                         <tr>
@@ -298,7 +302,7 @@ $queryDate = mysqli_num_rows($queryProduk);
                                 <td><img src="../img/image/<?php echo $data['foto']; ?>" width="50"></td>
                                 <td><?php echo $data['nama']; ?></td>
                                 <td><?php echo $data['nama_kategori']; ?></td>
-                                <td><?php echo $data['harga']; ?></td>
+                                <td>Rp. <?php echo number_format($data['harga']); ?></td>
                                 <td><?php echo $data['ketersediaan_stok']; ?></td>
                                 <td> 
                                     <a href="produk-detail.php?q=<?php echo $data['id'];?>" class="btn btn-info"><i class="fas fa-search"></i></a>
@@ -317,7 +321,7 @@ $queryDate = mysqli_num_rows($queryProduk);
 </div>
 
 <!-- penutup -->
-
+    <script src="../js/index.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
