@@ -321,7 +321,7 @@ $queryDate = mysqli_num_rows($queryProduk);
 </div>
 
 <!-- penutup -->
-    <script src="../js/index.js"></script>
+    <script src="../js/produk.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>

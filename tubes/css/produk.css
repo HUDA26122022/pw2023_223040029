@@ -55,10 +55,12 @@
 .font-text h1{
     font-family: 'Dancing Script', cursive;
     font-size: 45px;
+    text-shadow:2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .font{
     font-family: 'Acme', sans-serif;
+    text-shadow:2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .pdf{

@@ -113,7 +113,14 @@ $queryDate = mysqli_num_rows($queryProduk);
            
             <div class="col-lg-9"  >
                 <h1 class="text-center mb-3 font">Produk</h1>
-                <div class="row">
+                <form method="get" action="">
+                <div class="input-group my-3">
+                    <input type="text" id="keyword" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
+                    <button type="submit" id="tombol_cari" class="btn warna3 text-white"> Telusuri</button>
+                </div>
+            </form>
+                <div class="row" id="container"> 
+                
                     <?php 
                     if($queryDate < 1){
                         ?>
@@ -139,15 +146,18 @@ $queryDate = mysqli_num_rows($queryProduk);
                             </div>
                         </div>
                         <?php } ?>
+                       
                 </div>
             </div>
         </div>
     </div>
 
+
+<script src="js/produk2.js"></script>
 <?php require "footer.php"; ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    
 </body>
 </html>
