@@ -39,7 +39,7 @@ if (isset($_SESSION['role'])) {
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="adminpanel/index.php">Halaman Admin</a></li>
-          <li><a class="dropdown-item" href="keranjang.php">Pesanan</a></li>
+          <li><a class="dropdown-item" href="pesanan.php">Pesanan</a></li>
           <li><a class="dropdown-item" href="keranjang.php">Keranjang</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" onclick="return confirm('Apakah Anda Yakin Ingin Keluar!!');" href="logout.php">logout <img src="img/icons/login.png" alt="" width="20" height="20"></a></li>
@@ -57,7 +57,7 @@ if (isset($_SESSION['role'])) {
           <img src="img/icons/default.png" width="45" alt="Profile Image">
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="keranjang.php">Pesanan</a></li>
+        <li><a class="dropdown-item" href="pesanan.php">Pesanan</a></li>
           <li><a class="dropdown-item" href="keranjang.php">Keranjang</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" onclick="return confirm('Apakah Anda Yakin Ingin Keluar!!');" href="logout.php">logout <img src="img/icons/login.png" alt="" width="20" height="20"></a></li>

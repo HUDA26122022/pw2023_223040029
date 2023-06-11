@@ -100,7 +100,7 @@ if (isset($_SESSION['role'])) {
                       <p>jumlah : </p>
                       <input type="number" name="" class="inputform" value="1" min="1" max="5">
                       <p>
-                      <a href="pesanan.php" name="addcart" type="submit" class="btn btn-warning btn-keranjang mt-4 mb-2">
+                      <a href="from_pesanan.php" name="addcart" type="submit" class="btn btn-warning btn-keranjang mt-4 mb-2">
                         Pesan
                         </a>
                         <a href="keranjang.php" name="addcart" type="submit" class="btn btn-warning btn-keranjang mt-4 mb-2">

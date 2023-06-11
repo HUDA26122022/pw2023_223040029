@@ -48,3 +48,18 @@ button{
     margin-top: 10px;
     
 }
+#msg{
+    color: red;
+    margin-top: 30px;
+    display: block;
+}
+
+/* kembali */
+form a{
+    text-decoration: none;
+    color: white;
+}
+
+form a:hover{
+    color: greenyellow;
+}

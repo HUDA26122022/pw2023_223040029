@@ -52,7 +52,7 @@ $queryDate = mysqli_num_rows($queryProduk);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produk</title>
-    <link rel="icon" href="img/icons/logo1.png">
+    <link rel="icon" href="../img/icons/logo1.png">
     <!-- bosstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -250,7 +250,7 @@ $queryDate = mysqli_num_rows($queryProduk);
             <h2>List Produk</h2>
             <form method="get" action="product.php">
                 <div class="input-group my-3">
-                    <input type="text" id="keyword" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
+                    <input type="search" id="keyword" class="form-control" placeholder="Nama produck" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
                     <button type="submit" id="tombol_cari" class="btn warna3 text-white"> Telusuri</button>
                 </div>
             </form>

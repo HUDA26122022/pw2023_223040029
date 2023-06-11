@@ -17,7 +17,8 @@ $queryKategori=mysqli_query($link, "SELECT * FROM kategori");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cetak PDF</title>
+    <link rel="icon" href="../img/icons/logo1.png">
     <!-- bosstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -61,7 +62,8 @@ $queryKategori=mysqli_query($link, "SELECT * FROM kategori");
             <h1 class="">DWONLOAD PDF DI SINI</h1>
             <button class="btn btn-danger mt-3 mb-5" onclick="generatePDF()">dwonload</button>
             <div class="table-responsive mt-4 mb-5" id="invoice" >
-            <table class="table" >
+            <table class="table table-bordered table-hover border-secondary" >
+              <h1>Data Produk</h1>
                  <!-- atasnya table -->
                 <thead>
                         <tr class="text-center">

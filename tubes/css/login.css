@@ -5,6 +5,9 @@
 }
 
 body{
+    background: url(../img/background/background\ surabi2.jpg) no-repeat center center;
+    background-size:cover;
+    color: #fff;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -48,3 +51,4 @@ button{
     margin-top: 10px;
     
 }
+
